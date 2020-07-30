@@ -7,6 +7,7 @@ export interface ParsedRequest {
     theme: Theme;
     md: boolean;
     fontSize: string;
+    backgroundType: string;
     images: string[];
     widths: string[];
     heights: string[];

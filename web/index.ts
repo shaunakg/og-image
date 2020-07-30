@@ -142,6 +142,9 @@ const markdownOptions: DropdownOption[] = [
 ];
 
 const imageLightOptions: DropdownOption[] = [
+    { text: 'Autumnal logotype', value: "https://autumnal-cdn.netlify.app/images/logos/@shaunakg/exported/full/vector.svg" },
+    { text: 'Autumnal favicon', value: "https://autumnal-cdn.netlify.app/images/logos/@shaunakg/exported/favicon/vector.svg" },
+    { text: 'Autumnal circle', value: "https://autumnal-cdn.netlify.app/images/logos/@shaunakg/exported/favicon/circle/vector.svg" },
     { text: 'Vercel', value: 'https://assets.vercel.com/image/upload/front/assets/design/vercel-triangle-black.svg' },
     { text: 'Next.js', value: 'https://assets.vercel.com/image/upload/front/assets/design/nextjs-black-logo.svg' },
     { text: 'Hyper', value: 'https://assets.vercel.com/image/upload/front/assets/design/hyper-color-logo.svg' },
@@ -153,6 +156,12 @@ const imageDarkOptions: DropdownOption[] = [
     { text: 'Next.js', value: 'https://assets.vercel.com/image/upload/front/assets/design/nextjs-white-logo.svg' },
     { text: 'Hyper', value: 'https://assets.vercel.com/image/upload/front/assets/design/hyper-bw-logo.svg' },
 ];
+
+const backgroundImageOptions: DropdownOption[] = [
+    {text: "Triangle (default)", value: "triangle"},
+    {text: "Checkerboard", value: "checkerboard"},
+    {text: "Wiggly lines", value: "wiggle"}
+]
 
 const widthOptions = [
     { text: 'width', value: 'auto' },
@@ -202,6 +211,7 @@ const App = (_: any, state: AppState, setState: SetState) => {
     };
     const {
         fileType = 'png',
+        backgroundType = 'triangle',
         fontSize = '100px',
         theme = 'light',
         md = true,
@@ -231,6 +241,7 @@ const App = (_: any, state: AppState, setState: SetState) => {
     for (let height of heights) {
         url.searchParams.append('heights', height);
     }
+    url.searchParams.append('bgimg', backgroundType);
 
     return H('div',
         { className: 'split' },
@@ -256,6 +267,14 @@ const App = (_: any, state: AppState, setState: SetState) => {
                         options: fileTypeOptions,
                         value: fileType,
                         onchange: (val: FileType) => setLoadingState({ fileType: val })
+                    })
+                }),
+                H(Field, {
+                    label: 'Background image',
+                    input: H(Dropdown, {
+                        options: backgroundImageOptions,
+                        value: backgroundType,
+                        onchange: (val: string) => setLoadingState({ backgroundType: val })
                     })
                 }),
                 H(Field, {
