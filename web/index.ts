@@ -142,11 +142,11 @@ const markdownOptions: DropdownOption[] = [
 ];
 
 const imageLightOptions: DropdownOption[] = [
+    { text: 'srg.codes icon', value: "https://cdn.srg.codes/images/icon/icon.svg" },
+    { text: 'srg.codes circle', value: "https://cdn.srg.codes/images/icon/circular/icon.svg" },
     { text: 'Autumnal logotype', value: "https://autumnal-cdn.netlify.app/images/logos/@shaunakg/exported/full/vector.svg" },
     { text: 'Autumnal favicon', value: "https://autumnal-cdn.netlify.app/images/logos/@shaunakg/exported/favicon/vector.svg" },
     { text: 'Autumnal circle', value: "https://autumnal-cdn.netlify.app/images/logos/@shaunakg/exported/favicon/circle/vector.svg" },
-    { text: 'srg.codes icon', value: "https://cdn.srg.codes/images/icon/icon.svg" },
-    { text: 'srg.codes circle', value: "https://cdn.srg.codes/images/icon/circular/icon.svg" },
     { text: 'Virgo Supercluster icon', value: "https://cdn.virgo.srg.codes/logos/favicon/favicon.svg" },
     { text: 'Virgo Supercluster logotype', value: "https://cdn.virgo.srg.codes/logos/logotype/logotype.svg" },
     { text: 'Vercel', value: 'https://assets.vercel.com/image/upload/front/assets/design/vercel-triangle-black.svg' },
@@ -155,6 +155,13 @@ const imageLightOptions: DropdownOption[] = [
 ];
 
 const imageDarkOptions: DropdownOption[] = [
+    { text: 'srg.codes icon', value: "https://cdn.srg.codes/images/icon/icon.svg" },
+    { text: 'srg.codes circle', value: "https://cdn.srg.codes/images/icon/circular/icon.svg" },
+    { text: 'Autumnal logotype', value: "https://autumnal-cdn.netlify.app/images/logos/@shaunakg/exported/full/vector.svg" },
+    { text: 'Autumnal favicon', value: "https://autumnal-cdn.netlify.app/images/logos/@shaunakg/exported/favicon/vector.svg" },
+    { text: 'Autumnal circle', value: "https://autumnal-cdn.netlify.app/images/logos/@shaunakg/exported/favicon/circle/vector.svg" },
+    { text: 'Virgo Supercluster icon', value: "https://cdn.virgo.srg.codes/logos/favicon/favicon.svg" },
+    { text: 'Virgo Supercluster logotype', value: "https://cdn.virgo.srg.codes/logos/logotype/logotype.svg" },
     { text: 'Vercel', value: 'https://assets.vercel.com/image/upload/front/assets/design/vercel-triangle-white.svg' },
     { text: 'Next.js', value: 'https://assets.vercel.com/image/upload/front/assets/design/nextjs-white-logo.svg' },
     { text: 'Hyper', value: 'https://assets.vercel.com/image/upload/front/assets/design/hyper-bw-logo.svg' },
@@ -229,7 +236,7 @@ const App = (_: any, state: AppState, setState: SetState) => {
         overrideUrl = null,
     } = state;
     const mdValue = md ? '1' : '0';
-    //const imageOptions = theme === 'light' ? imageLightOptions : imageDarkOptions;
+    const imageOptions = theme === 'light' ? imageLightOptions : imageDarkOptions;
     const url = new URL(window.location.origin);
     url.pathname = `${encodeURIComponent(text)}.${fileType}`;
     url.searchParams.append('theme', theme);
@@ -308,6 +315,44 @@ const App = (_: any, state: AppState, setState: SetState) => {
                             setLoadingState({ text: val, overrideUrl: url });
                         }
                     })
+                }),
+                H(Field, {
+                    label: 'Image 1',
+                    input: H('div',
+                        H(Dropdown, {
+                            options: imageOptions,
+                            value: imageOptions[selectedImageIndex].value,
+                            onchange: (val: string) =>  {
+                                let clone = [...images];
+                                clone[0] = val;
+                                const selected = imageOptions.map(o => o.value).indexOf(val);
+                                setLoadingState({ images: clone, selectedImageIndex: selected });
+                            }
+                        }),
+                        H('div',
+                            { className: 'field-flex' },
+                            H(Dropdown, {
+                                options: widthOptions,
+                                value: widths[0],
+                                small: true,
+                                onchange: (val: string) =>  {
+                                    let clone = [...widths];
+                                    clone[0] = val;
+                                    setLoadingState({ widths: clone });
+                                }
+                            }),
+                            H(Dropdown, {
+                                options: heightOptions,
+                                value: heights[0],
+                                small: true,
+                                onchange: (val: string) =>  {
+                                    let clone = [...heights];
+                                    clone[0] = val;
+                                    setLoadingState({ heights: clone });
+                                }
+                            })
+                        )
+                    ),
                 }),
                 ...images.slice(1).map((image, i) => H(Field, {
                     label: `Image ${i + 2}`,
