@@ -214,7 +214,7 @@ const App = (_: any, state: AppState, setState: SetState) => {
     };
     const {
         fileType = 'png',
-        backgroundType = 'triangle',
+        backgroundType = ['triangle'],
         fontSize = '100px',
         theme = 'light',
         md = true,
@@ -244,7 +244,10 @@ const App = (_: any, state: AppState, setState: SetState) => {
     for (let height of heights) {
         url.searchParams.append('heights', height);
     }
-    url.searchParams.append('bgimg', backgroundType);
+
+    for (let bgtype of backgroundType) {
+        url.searchParams.append('bgimage', bgtype);
+    }
 
     return H('div',
         { className: 'split' },
@@ -277,7 +280,7 @@ const App = (_: any, state: AppState, setState: SetState) => {
                     input: H(Dropdown, {
                         options: backgroundImageOptions,
                         value: backgroundType,
-                        onchange: (val: string) => setLoadingState({ backgroundType: val })
+                        onchange: (val: string) => setLoadingState({ backgroundType: [val] })
                     })
                 }),
                 H(Field, {
