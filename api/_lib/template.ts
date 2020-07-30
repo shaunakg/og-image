@@ -24,9 +24,9 @@ function getCss(theme: string, fontSize: string, backgroundType: string) {
 
     let backgrounds = [
         `background-color: ${background};
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='36' height='72' viewBox='0 0 36 72'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='${radial}' fill-opacity='0.4'%3E%3Cpath d='M2 6h12L8 18 2 6zm18 36h12l-6 12-6-12z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");`,        `
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='36' height='72' viewBox='0 0 36 72'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='${radial}' fill-opacity='0.4'%3E%3Cpath d='M2 6h12L8 18 2 6zm18 36h12l-6 12-6-12z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");`,
         
-        background-color: ${background};
+        `background-color: ${background};
         background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='${radial}' fill-opacity='0.4'%3E%3Cpath fill-rule='evenodd' d='M0 0h40v40H0V0zm40 40h40v40H40V40zm0-40h2l-2 2V0zm0 4l4-4h2l-6 6V4zm0 4l8-8h2L40 10V8zm0 4L52 0h2L40 14v-2zm0 4L56 0h2L40 18v-2zm0 4L60 0h2L40 22v-2zm0 4L64 0h2L40 26v-2zm0 4L68 0h2L40 30v-2zm0 4L72 0h2L40 34v-2zm0 4L76 0h2L40 38v-2zm0 4L80 0v2L42 40h-2zm4 0L80 4v2L46 40h-2zm4 0L80 8v2L50 40h-2zm4 0l28-28v2L54 40h-2zm4 0l24-24v2L58 40h-2zm4 0l20-20v2L62 40h-2zm4 0l16-16v2L66 40h-2zm4 0l12-12v2L70 40h-2zm4 0l8-8v2l-6 6h-2zm4 0l4-4v2l-2 2h-2z'/%3E%3C/g%3E%3C/svg%3E");`,
         
         `background-color: ${background};
@@ -36,11 +36,11 @@ function getCss(theme: string, fontSize: string, backgroundType: string) {
 
     let backgroundImage = backgrounds[Math.floor(Math.random() * backgrounds.length)];
 
-    if (backgroundType === "triangle") {
+    if (backgroundType[0] === "triangle") {
         backgroundImage = backgrounds[0]
-    } else if (backgroundType === "checkerboard") {
+    } else if (backgroundType[0] === "checkerboard") {
         backgroundImage = backgrounds[1]
-    } else if (backgroundType === "wiggle") {
+    } else if (backgroundType[0] === "wiggle") {
         backgroundImage = backgrounds[2]
     }
 
