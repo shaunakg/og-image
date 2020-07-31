@@ -99,7 +99,6 @@ function getCss(theme: string, fontSize: string, backgroundType: string[]) {
     }
 
     .wholewrapper {
-        padding: 50px;
         background-color: ${wholewrapperbg};
         border-radius: 5px;
     }
