@@ -11,11 +11,10 @@ const rglr = readFileSync(`${__dirname}/../_fonts/Inter-Regular.woff2`).toString
 const bold = readFileSync(`${__dirname}/../_fonts/Inter-Bold.woff2`).toString('base64');
 const mono = readFileSync(`${__dirname}/../_fonts/Vera-Mono.woff2`).toString('base64');
 
-function getCss(theme: string, fontSize: string, backgroundType: string[], morethanoneimage: boolean) {
+function getCss(theme: string, fontSize: string, backgroundType: string[]) {
     let background = 'white';
     let foreground = 'black';
     let radial = 'lightgray';
-    let leftpadding = morethanoneimage ? 200 : 80;
 
     if (theme === 'dark') {
         background = 'black';
@@ -108,11 +107,13 @@ function getCss(theme: string, fontSize: string, backgroundType: string[], moret
         justify-content: center;
         flex-flow: column;
 
-        padding: 100px ${leftpadding}px;
+        padding: 100px 80px;
         padding-bottom: 0;
     }
 
-    .logo {}
+    .logo {
+        margin: 0 70px;
+    }
 
     .plus {
         color: #BBB;
@@ -166,7 +167,7 @@ export function getHtml(parsedReq: ParsedRequest) {
     <title>Generated Image</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
-        ${getCss(theme, fontSize, backgroundType, (images.length > 1))}
+        ${getCss(theme, fontSize, backgroundType)}
     </style>
     <body>
         <div class="wholewrapper">
