@@ -44,7 +44,7 @@ function getCss(theme: string, fontSize: string, backgroundType: string[]) {
     } else if (backgroundType[0] === "wiggle") {
         backgroundImage = backgrounds[2]
     } else {
-        backgroundImage = `background-image: url("${backgroundType[0]}"); background-fit: contain`;
+        backgroundImage = `background-image: url("${backgroundType[0]}"); background-size: contain`;
         wholewrapperbg = background;
     }
 
