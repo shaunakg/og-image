@@ -101,6 +101,11 @@ function getCss(theme: string, fontSize: string, backgroundType: string[]) {
     .wholewrapper {
         background-color: ${wholewrapperbg};
         border-radius: 5px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-flow: column;
     }
 
     .logo {
@@ -128,6 +133,7 @@ function getCss(theme: string, fontSize: string, backgroundType: string[]) {
         font-family: 'Inter', sans-serif;
         font-size: ${sanitizeHtml(fontSize)};
         font-style: normal;
+        margin: 0;
         color: ${foreground};
         line-height: 1.8;
     }
@@ -161,13 +167,11 @@ export function getHtml(parsedReq: ParsedRequest) {
     </style>
     <body>
         <div class="wholewrapper">
-            <div class="spacer">
             <div class="logo-wrapper">
                 ${images.map((img, i) =>
                     getPlusSign(i) + getImage(img, widths[i], heights[i])
                 ).join('')}
             </div>
-            <div class="spacer">
             <div class="heading">${emojify(
                 md ? marked(text) : sanitizeHtml(text)
             )}
