@@ -44,7 +44,7 @@ function getCss(theme: string, fontSize: string, backgroundType: string[]) {
     } else if (backgroundType[0] === "wiggle") {
         backgroundImage = backgrounds[2]
     } else {
-        backgroundImage = `background-image: url("${backgroundType[0]}");`;
+        backgroundImage = `background-image: url("${backgroundType[0]}"); background-size: 100vw 100vh;`;
         wholewrapperbg = background;
     }
 
@@ -106,11 +106,12 @@ function getCss(theme: string, fontSize: string, backgroundType: string[]) {
         align-items: center;
         justify-content: center;
         flex-flow: column;
+
+        padding: 50px 20px;
+        padding-bottom: 0;
     }
 
-    .logo {
-        margin: 0 75px;
-    }
+    .logo {}
 
     .plus {
         color: #BBB;
@@ -133,8 +134,8 @@ function getCss(theme: string, fontSize: string, backgroundType: string[]) {
         font-family: 'Inter', sans-serif;
         font-size: ${sanitizeHtml(fontSize)};
         font-style: normal;
-        margin: 0;
         color: ${foreground};
+        margin: 0;
         line-height: 1.8;
     }
 
