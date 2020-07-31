@@ -11,10 +11,11 @@ const rglr = readFileSync(`${__dirname}/../_fonts/Inter-Regular.woff2`).toString
 const bold = readFileSync(`${__dirname}/../_fonts/Inter-Bold.woff2`).toString('base64');
 const mono = readFileSync(`${__dirname}/../_fonts/Vera-Mono.woff2`).toString('base64');
 
-function getCss(theme: string, fontSize: string, backgroundType: string[]) {
+function getCss(theme: string, fontSize: string, backgroundType: string[], morethanoneimage: boolean) {
     let background = 'white';
     let foreground = 'black';
     let radial = 'lightgray';
+    let leftpadding = morethanoneimage ? 200 : 80;
 
     if (theme === 'dark') {
         background = 'black';
@@ -107,7 +108,7 @@ function getCss(theme: string, fontSize: string, backgroundType: string[]) {
         justify-content: center;
         flex-flow: column;
 
-        padding: 100px 80px;
+        padding: 100px ${leftpadding}px;
         padding-bottom: 0;
     }
 
@@ -137,7 +138,7 @@ function getCss(theme: string, fontSize: string, backgroundType: string[]) {
         color: ${foreground};
         margin: 0;
         line-height: 1.8;
-        margin-bottom: -100px;
+        margin-bottom: -70px;
     }
 
     .madeByShaunak {
@@ -165,7 +166,7 @@ export function getHtml(parsedReq: ParsedRequest) {
     <title>Generated Image</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
-        ${getCss(theme, fontSize, backgroundType)}
+        ${getCss(theme, fontSize, backgroundType, (images.length > 1))}
     </style>
     <body>
         <div class="wholewrapper">
