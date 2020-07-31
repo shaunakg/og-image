@@ -35,6 +35,7 @@ function getCss(theme: string, fontSize: string, backgroundType: string[]) {
     ]
 
     let backgroundImage = backgrounds[Math.floor(Math.random() * backgrounds.length)];
+    let wholewrapperbg = "transparent";
 
     if (backgroundType[0] === "triangle") {
         backgroundImage = backgrounds[0]
@@ -42,6 +43,9 @@ function getCss(theme: string, fontSize: string, backgroundType: string[]) {
         backgroundImage = backgrounds[1]
     } else if (backgroundType[0] === "wiggle") {
         backgroundImage = backgrounds[2]
+    } else {
+        backgroundImage = `background-image: url("${backgroundType[0]}"); background-fit: contain`;
+        wholewrapperbg = background;
     }
 
     return `
@@ -92,6 +96,12 @@ function getCss(theme: string, fontSize: string, backgroundType: string[]) {
         align-content: center;
         justify-content: center;
         justify-items: center;
+    }
+
+    .wholewrapper {
+        padding: 50px;
+        background-color: ${wholewrapperbg};
+        border-radius: 5px;
     }
 
     .logo {
@@ -151,7 +161,7 @@ export function getHtml(parsedReq: ParsedRequest) {
         ${getCss(theme, fontSize, backgroundType)}
     </style>
     <body>
-        <div>
+        <div class="wholewrapper">
             <div class="spacer">
             <div class="logo-wrapper">
                 ${images.map((img, i) =>

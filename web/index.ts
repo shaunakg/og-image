@@ -167,11 +167,11 @@ const imageDarkOptions: DropdownOption[] = [
     { text: 'Hyper', value: 'https://assets.vercel.com/image/upload/front/assets/design/hyper-bw-logo.svg' },
 ];
 
-const backgroundImageOptions: DropdownOption[] = [
-    {text: "Triangle (default)", value: "triangle"},
-    {text: "Checkerboard", value: "checkerboard"},
-    {text: "Wiggly lines", value: "wiggle"}
-]
+// const backgroundImageOptions: DropdownOption[] = [
+//     {text: "Triangle (default)", value: "triangle"},
+//     {text: "Checkerboard", value: "checkerboard"},
+//     {text: "Wiggly lines", value: "wiggle"}
+// ]
 
 const widthOptions = [
     { text: 'width', value: 'auto' },
@@ -282,14 +282,23 @@ const App = (_: any, state: AppState, setState: SetState) => {
                         onchange: (val: FileType) => setLoadingState({ fileType: val })
                     })
                 }),
+                // H(Field, {
+                //     label: 'Background image',
+                //     input: H(Dropdown, {
+                //         options: backgroundImageOptions,
+                //         value: backgroundType,
+                //         onchange: (val: string) => setLoadingState({ backgroundType: [val] })
+                //     })
+                // }),
                 H(Field, {
-                    label: 'Background image',
-                    input: H(Dropdown, {
-                        options: backgroundImageOptions,
-                        value: backgroundType,
-                        onchange: (val: string) => setLoadingState({ backgroundType: [val] })
+                    label: 'Background image (triangle, checkerboard, wiggle, customURL)',
+                    input: H(TextInput, {
+                        value: text,
+                        oninput: (val: string) => {
+                            setLoadingState({ backgroundType: [val] });
+                        }
                     })
-                }),
+                }),                
                 H(Field, {
                     label: 'Font Size',
                     input: H(Dropdown, {
