@@ -293,7 +293,7 @@ const App = (_: any, state: AppState, setState: SetState) => {
                 H(Field, {
                     label: 'Background image (triangle, checkerboard, wiggle, customURL)',
                     input: H(TextInput, {
-                        value: text,
+                        value: backgroundType[0],
                         oninput: (val: string) => {
                             setLoadingState({ backgroundType: [val] });
                         }
