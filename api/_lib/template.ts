@@ -107,8 +107,8 @@ function getCss(theme: string, fontSize: string, backgroundType: string[]) {
         justify-content: center;
         flex-flow: column;
 
-        padding: 50px 20px;
-        padding-bottom: 0;
+        padding: 50px 40px;
+        padding-bottom: -20px;
     }
 
     .logo {}
