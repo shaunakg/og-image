@@ -108,7 +108,7 @@ function getCss(theme: string, fontSize: string, backgroundType: string[]) {
         flex-flow: column;
 
         padding: 50px 40px;
-        padding-bottom: -100px;
+        padding-bottom: 0;
     }
 
     .logo {}
@@ -137,6 +137,7 @@ function getCss(theme: string, fontSize: string, backgroundType: string[]) {
         color: ${foreground};
         margin: 0;
         line-height: 1.8;
+        margin-bottom: -100px;
     }
 
     .madeByShaunak {
