@@ -15,6 +15,7 @@ function getCss(theme: string, fontSize: string, backgroundType: string[]) {
     let background = 'white';
     let foreground = 'black';
     let radial = 'lightgray';
+    let wrapperborder = 'none';
 
     if (theme === 'dark') {
         background = 'black';
@@ -46,6 +47,7 @@ function getCss(theme: string, fontSize: string, backgroundType: string[]) {
     } else {
         backgroundImage = `background-image: url("${backgroundType[0]}"); background-size: 100vw 100vh;`;
         wholewrapperbg = background;
+        wrapperborder = "20px solid #271033";
     }
 
     return `
@@ -100,7 +102,7 @@ function getCss(theme: string, fontSize: string, backgroundType: string[]) {
 
     .wholewrapper {
         background-color: ${wholewrapperbg};
-        border: 20px solid #FFBD00;
+        border: ${wrapperborder};
         border-radius: 5px;
 
         display: flex;
