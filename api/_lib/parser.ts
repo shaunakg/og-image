@@ -37,7 +37,7 @@ export function parseRequest(req: IncomingMessage) {
         widths: getArray(widths),
         heights: getArray(heights),
         backgroundType: getArray(bgimage),
-        border: border[0] || '20px solid white',
+        border: getArray(border)[0] || '20px solid white',
     };
 
     parsedRequest.images = getDefaultImages(parsedRequest.images, parsedRequest.theme);
