@@ -222,6 +222,7 @@ const App = (_: any, state: AppState, setState: SetState) => {
     const {
         fileType = 'png',
         backgroundType = ['triangle'],
+        border = "20px solid #271033",
         fontSize = '100px',
         theme = 'light',
         md = true,
@@ -298,7 +299,16 @@ const App = (_: any, state: AppState, setState: SetState) => {
                             setLoadingState({ backgroundType: [val] });
                         }
                     })
-                }),                
+                }),  
+                H(Field, {
+                    label: 'Border (CSS-compatible)',
+                    input: H(TextInput, {
+                        value: border,
+                        oninput: (val: string) => {
+                            setLoadingState({ border: val });
+                        }
+                    })
+                }),              
                 H(Field, {
                     label: 'Font Size',
                     input: H(Dropdown, {

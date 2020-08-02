@@ -11,11 +11,10 @@ const rglr = readFileSync(`${__dirname}/../_fonts/Inter-Regular.woff2`).toString
 const bold = readFileSync(`${__dirname}/../_fonts/Inter-Bold.woff2`).toString('base64');
 const mono = readFileSync(`${__dirname}/../_fonts/Vera-Mono.woff2`).toString('base64');
 
-function getCss(theme: string, fontSize: string, backgroundType: string[]) {
+function getCss(theme: string, fontSize: string, backgroundType: string[], border: string) {
     let background = 'white';
     let foreground = 'black';
     let radial = 'lightgray';
-    let wrapperborder = 'none';
 
     if (theme === 'dark') {
         background = 'black';
@@ -47,7 +46,6 @@ function getCss(theme: string, fontSize: string, backgroundType: string[]) {
     } else {
         backgroundImage = `background-image: url("${backgroundType[0]}"); background-size: 100vw 100vh;`;
         wholewrapperbg = background;
-        wrapperborder = "20px solid #271033";
     }
 
     return `
@@ -102,7 +100,7 @@ function getCss(theme: string, fontSize: string, backgroundType: string[]) {
 
     .wholewrapper {
         background-color: ${wholewrapperbg};
-        border: ${wrapperborder};
+        border: ${border};
         border-radius: 5px;
 
         display: flex;
@@ -163,14 +161,14 @@ function getCss(theme: string, fontSize: string, backgroundType: string[]) {
 }
 
 export function getHtml(parsedReq: ParsedRequest) {
-    const { text, theme, md, fontSize, images, widths, heights, backgroundType } = parsedReq;
+    const { text, theme, md, fontSize, images, widths, heights, backgroundType, border } = parsedReq;
     return `<!DOCTYPE html>
 <html>
     <meta charset="utf-8">
     <title>Generated Image</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
-        ${getCss(theme, fontSize, backgroundType)}
+        ${getCss(theme, fontSize, backgroundType, border)}
     </style>
     <body>
         <div class="wholewrapper">
