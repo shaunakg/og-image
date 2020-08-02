@@ -100,6 +100,7 @@ function getCss(theme: string, fontSize: string, backgroundType: string[]) {
 
     .wholewrapper {
         background-color: ${wholewrapperbg};
+        border: 20px solid #FFBD00;
         border-radius: 5px;
 
         display: flex;
