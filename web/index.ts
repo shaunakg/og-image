@@ -243,6 +243,7 @@ const App = (_: any, state: AppState, setState: SetState) => {
     url.searchParams.append('theme', theme);
     url.searchParams.append('md', mdValue);
     url.searchParams.append('fontSize', fontSize);
+    url.searchParams.append('border', border);
     for (let image of images) {
         url.searchParams.append('images', image);
     }
