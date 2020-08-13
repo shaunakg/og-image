@@ -141,6 +141,11 @@ const markdownOptions: DropdownOption[] = [
     { text: 'Markdown', value: '1' },
 ];
 
+const squareOptions: DropdownOption[] = [
+    { text: 'Rectangular', value: '0' },
+    { text: 'Square', value: '1' },
+];
+
 const imageLightOptions: DropdownOption[] = [
     { text: 'srg.codes icon', value: "https://cdn.srg.codes/images/icon/icon.svg" },
     { text: 'srg.codes circle', value: "https://cdn.srg.codes/images/icon/circular/icon.svg" },
@@ -226,6 +231,7 @@ const App = (_: any, state: AppState, setState: SetState) => {
         fontSize = '100px',
         theme = 'light',
         md = true,
+        square = false,
         text = '**Hello** World',
         images=[imageLightOptions[0].value],
         widths=[],
@@ -237,11 +243,13 @@ const App = (_: any, state: AppState, setState: SetState) => {
         overrideUrl = null,
     } = state;
     const mdValue = md ? '1' : '0';
+    const squareValue = square ? '1' : '0';
     const imageOptions = theme === 'light' ? imageLightOptions : imageDarkOptions;
     const url = new URL(window.location.origin);
     url.pathname = `${encodeURIComponent(text)}.${fileType}`;
     url.searchParams.append('theme', theme);
     url.searchParams.append('md', mdValue);
+    url.searchParams.append('square', squareValue);
     url.searchParams.append('fontSize', fontSize);
     url.searchParams.append('border', border);
     for (let image of images) {
@@ -324,6 +332,14 @@ const App = (_: any, state: AppState, setState: SetState) => {
                         options: markdownOptions,
                         value: mdValue,
                         onchange: (val: string) => setLoadingState({ md: val === '1' })
+                    })
+                }),
+                H(Field, {
+                    label: 'Square',
+                    input: H(Dropdown, {
+                        options: squareOptions,
+                        value: squareValue,
+                        onchange: (val: string) => setLoadingState({ square: val === '1' })
                     })
                 }),
                 H(Field, {

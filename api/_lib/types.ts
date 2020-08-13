@@ -6,6 +6,7 @@ export interface ParsedRequest {
     text: string;
     theme: Theme;
     md: boolean;
+    square: boolean;
     fontSize: string;
     border: string;
     backgroundType: string[];
